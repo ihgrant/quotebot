@@ -1,10 +1,11 @@
 var _ = require('lodash');
 var sheetrock = require('sheetrock');
+var config = require('./config');
 
 function get(quoteId) {
     return new Promise((resolve, reject) => {
         sheetrock({
-            url: `${process.env.QUOTES_URL}#gid=quotes`,
+            url: `${config('QUOTES_URL')}#gid=quotes`,
             query: `SELECT C WHERE A LIKE '%0${quoteId}:%'`,
             callback: (err, options, response) => {
                 if (err) {

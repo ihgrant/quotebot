@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.7",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.1",
     "lodash": "^4.17.4",
     "sheetrock": "^1.1.4",
     "slackbots": "^1.0.2"
