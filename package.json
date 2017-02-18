@@ -2,7 +2,8 @@
   "name": "quotbot-node",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "dev": "NODE_ENV=development node index"
   },
   "main": "index.js",
   "author": "Ian <ian.h.grant@gmail.com>",

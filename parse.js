@@ -1,11 +1,13 @@
 var _ = require('lodash');
 var quotes = require('./quotes');
 
+var triggers = ['!quote', 'quotebot', 'quotbot'];
+
 function parseMessage(msg) {
     return Promise.resolve().then(() => {
         const [trigger, command, quoteId, ...rest] = _.split(msg, ' ');
 
-        if (!trigger || trigger !== '!quote') {
+        if (!trigger || !_.includes(triggers, trigger)) {
             return;
         }
 

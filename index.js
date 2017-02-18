@@ -3,7 +3,9 @@ var bunyan = require('bunyan');
 var parseMessage = require('./parse');
 var quotes = require('./quotes');
 
-require('dotenv').config();
+if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config();
+}
 
 var log = bunyan.createLogger({
     name: 'quotbot',
@@ -24,6 +26,7 @@ var bot = new SlackBot({
 });
 
 bot.on('start', function() {
+    console.info('bot connected');
     // more information about additional params https://api.slack.com/methods/chat.postMessage
     // var params = {
     //     icon_emoji: ':cat:'
@@ -50,10 +53,10 @@ bot.on('message', data => {
                     bot.postMessageToChannel('general', response, {});
                 }
             })
-            .catch(err => log.error(err.message));
+            .catch(err => console.error(err.message));
     }
 });
 
 bot.on('error', err => {
-    log.error(err);
+    console.error(err.message);
 });
