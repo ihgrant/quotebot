@@ -1,19 +1,6 @@
 var SlackBot = require('slackbots');
-var bunyan = require('bunyan');
 var parseMessage = require('./parse');
 var quotes = require('./quotes');
-
-var log = bunyan.createLogger({
-    name: 'quotbot',
-    streams: [
-        {
-            type: 'rotating-file',
-            path: './logs/rolling.log',
-            period: '1d', // daily rotation
-            count: 3 // keep 3 back copies
-        }
-    ]
-});
 
 // create a bot
 var bot = new SlackBot({

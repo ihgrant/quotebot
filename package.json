@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.7",
-    "bunyan": "^1.8.5",
     "lodash": "^4.17.4",
     "sheetrock": "^1.1.4",
     "slackbots": "^1.0.2"
