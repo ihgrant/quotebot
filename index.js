@@ -3,10 +3,6 @@ var bunyan = require('bunyan');
 var parseMessage = require('./parse');
 var quotes = require('./quotes');
 
-if (process.env.NODE_ENV === 'development') {
-    require('dotenv').config();
-}
-
 var log = bunyan.createLogger({
     name: 'quotbot',
     streams: [
@@ -50,10 +46,11 @@ bot.on('message', data => {
         parseMessage(data.text)
             .then(response => {
                 if (response) {
+                    console.info(`quote delivered: ${response}`);
                     bot.postMessageToChannel('general', response, {});
                 }
             })
-            .catch(err => console.error(err.message));
+            .catch(err => console.error(err.stack));
     }
 });
 

@@ -1,12 +1,10 @@
 var _ = require('lodash');
 var sheetrock = require('sheetrock');
 
-require('dotenv').config();
-
 function get(quoteId) {
     return new Promise((resolve, reject) => {
         sheetrock({
-            url: process.env.QUOTES_URL,
+            url: `${process.env.QUOTES_URL}#gid=quotes`,
             query: `SELECT C WHERE A LIKE '%0${quoteId}:%'`,
             callback: (err, options, response) => {
                 if (err) {
@@ -17,15 +15,15 @@ function get(quoteId) {
             },
             reset: true
         });
-    }).then(({ req, opts, raw, attr, rows, html }) =>
-        _.first(_.first(rows).cellsArray));
+    }).then(({ req, opts, raw, attr, rows, html }) => {
+        if (!_.first(rows)) {
+            return '';
+        }
+        const cells = _.first(rows).cellsArray;
+        return _.first(cells);
+    });
 }
 
 module.exports = {
     get
 };
-
-get(98)
-    .then(({ req, opts, raw, attr, rows, html }) =>
-        console.info(_.first(_.first(rows).cellsArray)))
-    .catch(err => console.error(err.message));

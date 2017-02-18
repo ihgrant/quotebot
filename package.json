@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node index",
-    "dev": "NODE_ENV=development node index"
+    "dev": "heroku local web -e .env"
   },
   "main": "index.js",
   "author": "Ian <ian.h.grant@gmail.com>",
@@ -15,7 +15,5 @@
     "sheetrock": "^1.1.4",
     "slackbots": "^1.0.2"
   },
-  "devDependencies": {
-    "dotenv": "^4.0.0"
-  }
+  "devDependencies": {}
 }
