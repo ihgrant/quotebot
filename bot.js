@@ -34,8 +34,10 @@ bot.on('message', data => {
         parseMessage(data.text)
             .then(response => {
                 if (response) {
+                    if (process.env.NODE_ENV !== 'development') {
+                        bot.postMessage(data.channel, `>${response}`, {});
+                    }
                     console.info(`quote delivered: ${response}`);
-                    bot.postMessageToChannel('general', response, {});
                 }
             })
             .catch(err => console.error(err.stack));
