@@ -1,0 +1,21 @@
+{
+  "name": "quotbot-node",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index"
+  },
+  "main": "index.js",
+  "author": "Ian <ian.h.grant@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@aftership/google-spreadsheets": "^1.0.0",
+    "bluebird": "^3.4.7",
+    "bunyan": "^1.8.5",
+    "lodash": "^4.17.4",
+    "sheetrock": "^1.1.4",
+    "slackbots": "^1.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
