@@ -14,6 +14,7 @@ QUOTES_URL: the path to the google spreadsheet. Quotes must be stored in a works
 
 ## to do
 - [x] add basic http response
-- [ ] deliver quotes to the channel the request was made in, rather than always general
+- [x] deliver quotes to the channel the request was made in, rather than always general
 - [ ] add ability to save quotes
+- [ ] add quote search
 - [ ] add ability to alias quotes and process quote aliases

@@ -35,7 +35,12 @@ bot.on('message', data => {
             .then(response => {
                 if (response) {
                     if (process.env.NODE_ENV !== 'development') {
-                        bot.postMessage(data.channel, `>${response}`, {});
+                        if (response.length < 1000) {
+                            // avoid spamming the channel with big messages
+                            bot.postMessage(data.channel, response, {});
+                        } else {
+                            bot.postMessage(data.user, response, {});
+                        }
                     }
                     console.info(`quote delivered: ${response}`);
                 }

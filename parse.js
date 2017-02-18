@@ -5,24 +5,25 @@ var triggers = ['!quote', 'quotebot', 'quotbot'];
 
 function parseMessage(msg) {
     return Promise.resolve().then(() => {
-        const [trigger, command, quoteId, ...rest] = _.split(msg, ' ');
+        const [trigger, command, input, ...rest] = _.split(msg, ' ');
 
         if (!trigger || !_.includes(triggers, trigger)) {
             return;
         }
 
-        return processCommand(command, quoteId);
+        return processCommand(command, input);
     });
 }
 
-function processCommand(command, quoteId) {
-    if (!_.isNumber(Number(quoteId))) {
-        throw new Error('quoteId is not a number.');
-    }
-
+function processCommand(command, input) {
     switch (command.toLowerCase()) {
         case 'get':
-            return quotes.get(quoteId);
+            if (!_.isNumber(Number(input))) {
+                throw new Error('quoteId is not a number.');
+            }
+            return quotes.get(input);
+        case 'search':
+            return quotes.search(input);
         default:
             throw new Error('command not matched');
     }
